@@ -1,10 +1,8 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {FLatList, StyleSheet} from 'react-native';
 
-const PlacesList = () => {
+const PlacesList = ({places}) => {
   return (
-    <View>
-      <Text>All Places</Text>
-    </View>
+    <FlatList data={places} />
   );
 }
 
