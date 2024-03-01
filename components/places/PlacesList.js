@@ -1,4 +1,4 @@
-import {FLatList, StyleSheet} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 
 const PlacesList = ({places}) => {
   return (
