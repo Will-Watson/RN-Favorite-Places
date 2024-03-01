@@ -13,7 +13,13 @@ export default function App() {
       <StatusBar style='dark' />
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name='AllPlaces' component={AllPlaces} />
+          <Stack.Screen
+            name='AllPlaces'
+            component={AllPlaces}
+            options={{
+              headerRight: ({tintColor}) => {},
+            }}
+          />
           <Stack.Screen name='AddPlace' component={AddPlace} />
         </Stack.Navigator>
       </NavigationContainer>
