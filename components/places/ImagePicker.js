@@ -1,12 +1,23 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Button, StyleSheet } from 'react-native';
+import { launchCameraAsync } from 'expo-image-picker';
 
 const ImagePicker = () => {
+  const takeImageHandler = async () => {
+    const image = await launchCameraAsync({
+      allowsEditing: true,
+      aspect: [16, 9],
+      quality: 0.5,
+    });
+    console.log(image);
+  };
+
   return (
     <View>
-      <Text>Image Picker</Text>
+      <View></View>
+      <Button title='Take Image' onPress={takeImageHandler} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({});
 
