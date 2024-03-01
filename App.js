@@ -10,11 +10,11 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <>
-      <StatusBar style='dark'/>
+      <StatusBar style='dark' />
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="AllPlaces" component={AllPlaces} />
-          <Stack.Screen name="AddPlace" component={AddPlace} />
+          <Stack.Screen name='AllPlaces' component={AllPlaces} />
+          <Stack.Screen name='AddPlace' component={AddPlace} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
