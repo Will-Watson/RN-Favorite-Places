@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import PlaceItem from './PlaceItem';
 
 const PlacesList = ({ places }) => {
