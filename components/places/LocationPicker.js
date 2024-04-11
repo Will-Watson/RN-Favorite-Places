@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     backgroundColor: Colors.primary100,
     borderRadius: 4,
+    overflow: 'hidden',
   },
   actions: {
     flexDirection: 'row',
@@ -97,6 +98,8 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
+    borderRadius: 4,
+
   },
 });
 
