@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, Alert } from 'react';
 import { StyleSheet } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
-const Map = () => {
+const Map = ({ navigation }) => {
   const [selectedLocation, setSelectedLocation] = useState({
     lat: null,
     lng: null,
@@ -22,6 +22,18 @@ const Map = () => {
     setSelectedLocation({ lat, lng });
   };
 
+  const savePickedLocationHandler = () => {
+    if (!selectedLocation.lat || !selectedLocation.lng) {
+      Alert.alert('No location picked!', 'Please pick a location on the map.');
+      return;
+    }
+
+    navigation.navigate('AddPlace', {
+      pickedLat: selectedLocation.lat,
+      pickedLng: selectedLocation.lng,
+    });
+  };
+
   return (
     <MapView
       style={styles.map}
@@ -30,6 +42,7 @@ const Map = () => {
     >
       {selectedLocation.lat && selectedLocation.lng && (
         <Marker
+          title='Picked Location'
           coordinate={{
             latitude: selectedLocation.lat,
             longitude: selectedLocation.lng,
