@@ -9,10 +9,8 @@ const LocationPicker = () => {
 
   return (
     <View>
-      <View>
-        <Text>No location chosen yet!</Text>
-      </View>
-      <View>
+      <View style={styles.mapPreview}></View>
+      <View style={styles.actions}>
         <OutlinedButton icon='location' onPress={getLocationHandler}>
           Locate User
         </OutlinedButton>
@@ -34,7 +32,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary100,
     borderRadius: 4,
   },
-  action: {},
+  actions: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
 });
 
 export default LocationPicker;
