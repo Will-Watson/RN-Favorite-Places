@@ -7,12 +7,14 @@ const Map = () => {
     longitude: -122.43,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
-  }
-  return (
-    <MapView initialRegion={region}></MapView>
-  );
+  };
+  return <MapView style={styles.map} initialRegion={region}></MapView>;
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  map: {
+    flex: 1,
+  },
+});
 
 export default Map;
