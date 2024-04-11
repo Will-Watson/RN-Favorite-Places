@@ -5,6 +5,7 @@ import {
   useForegroundPermissions,
   PermissionStatus,
 } from 'expo-location';
+import { useNavigation } from '@react-navigation/native';
 
 import OutlinedButton from '../UI/OutlinedButton';
 import { Colors } from '../../constants/colors';
@@ -15,6 +16,8 @@ const LocationPicker = () => {
     lat: null,
     lng: null,
   });
+
+  const navigation = useNavigation();
 
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
@@ -52,7 +55,9 @@ const LocationPicker = () => {
       lng: location.coords.longitude,
     });
   };
-  const pickOnMapHandler = () => {};
+  const pickOnMapHandler = () => {
+    navigation.navigate('Map');
+  };
 
   let locationPreview = <Text>No location chosen yet!</Text>;
   if (pickedLocation.lat && pickedLocation.lng) {
@@ -99,7 +104,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: 4,
-
   },
 });
 
