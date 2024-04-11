@@ -58,6 +58,7 @@ const LocationPicker = () => {
   if (pickedLocation.lat && pickedLocation.lng) {
     locationPreview = (
       <Image
+        style={styles.image}
         source={{ uri: getMapPreview(pickedLocation.lat, pickedLocation.lng) }}
       />
     );
@@ -92,6 +93,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
 });
 
