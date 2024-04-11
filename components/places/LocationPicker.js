@@ -1,15 +1,28 @@
-import { View, Text, StyleSheet, Alert } from 'react-native';
-import { getCurrentPositionAsync, useForegroundPermissions, PermissionStatus } from 'expo-location';
+import { useState } from 'react';
+import { View, Image, StyleSheet, Text, Alert } from 'react-native';
+import {
+  getCurrentPositionAsync,
+  useForegroundPermissions,
+  PermissionStatus,
+} from 'expo-location';
 
 import OutlinedButton from '../UI/OutlinedButton';
 import { Colors } from '../../constants/colors';
+import { getMapPreview } from '../../util/location';
 
 const LocationPicker = () => {
+  const [pickedLocation, setPickedLocation] = useState({
+    lat: null,
+    lng: null,
+  });
 
-  const [locationPermissionInformation, requestPermission] = useForegroundPermissions();
+  const [locationPermissionInformation, requestPermission] =
+    useForegroundPermissions();
 
   const verifyPermissions = async () => {
-    if (locationPermissionInformation.status === PermissionStatus.UNDETERMINED) {
+    if (
+      locationPermissionInformation.status === PermissionStatus.UNDETERMINED
+    ) {
       const permissionResponse = await requestPermission();
       return permissionResponse.granted;
     }
@@ -24,7 +37,7 @@ const LocationPicker = () => {
     }
 
     return true;
-  }
+  };
 
   const getLocationHandler = async () => {
     const hasPermission = await verifyPermissions();
@@ -34,13 +47,25 @@ const LocationPicker = () => {
     }
 
     const location = await getCurrentPositionAsync();
-    console.log(location);
+    setPickedLocation({
+      lat: location.coords.latitude,
+      lng: location.coords.longitude,
+    });
   };
   const pickOnMapHandler = () => {};
 
+  let locationPreview = <Text>No location chosen yet!</Text>;
+  if (pickedLocation.lat && pickedLocation.lng) {
+    locationPreview = (
+      <Image
+        source={{ uri: getMapPreview(pickedLocation.lat, pickedLocation.lng) }}
+      />
+    );
+  }
+
   return (
     <View>
-      <View style={styles.mapPreview}></View>
+      <View style={styles.mapPreview}>{locationPreview}</View>
       <View style={styles.actions}>
         <OutlinedButton icon='location' onPress={getLocationHandler}>
           Locate User
