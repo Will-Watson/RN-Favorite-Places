@@ -5,7 +5,7 @@ import {
   useForegroundPermissions,
   PermissionStatus,
 } from 'expo-location';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute, useIsFocused } from '@react-navigation/native';
 
 import OutlinedButton from '../UI/OutlinedButton';
 import { Colors } from '../../constants/colors';
@@ -19,20 +19,23 @@ const LocationPicker = () => {
 
   const navigation = useNavigation();
   const route = useRoute();
+  const isFocused = useIsFocused();
 
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
 
-  const mapPickedLocation = route.params && {
-    lat: route.params.pickedLat,
-    lng: route.params.pickedLng,
-  };
+  const mapPickedLocation = route.params
+    ? {
+        lat: route.params.pickedLat,
+        lng: route.params.pickedLng,
+      }
+    : null;
 
   useEffect(() => {
     if (mapPickedLocation) {
       setPickedLocation(mapPickedLocation);
     }
-  }, [mapPickedLocation]);
+  }, []);
 
   const verifyPermissions = async () => {
     if (
